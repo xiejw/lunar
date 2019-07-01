@@ -9,3 +9,11 @@ Usage:
 
     results, _ := RunCmd("whoami")
     fmt.Println(results[0])
+
+## Package `base`
+
+Usage:
+
+    hash, _ := Sha256Sum("~/.profile")
+    fmt.Println(hash)
+
