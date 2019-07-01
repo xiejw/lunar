@@ -17,3 +17,8 @@ Usage:
     hash, _ := Sha256Sum("~/.profile")
     fmt.Println(hash)
 
+## Package `cfmt`
+
+Usage:
+
+    cfmt.Red("Hello")
