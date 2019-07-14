@@ -1,3 +1,9 @@
+# Go Programming Language Learning Notes
+
+## Embedding
+
+_Written on 2019-07-13_
+
 According to [Effective
 Go](https://tip.golang.org/doc/effective_go.html#embedding): "Go does not
 provide the typical, type-driven notion of subclassing, but it does have the

@@ -2,7 +2,7 @@
 
 ## Defined Type
 
-__Written on 2018-07-22__
+_Written on 2018-07-22_
 
 The new type, defined by `type` is called a defined type. It is different from
 any other type, including the type it is created from.
