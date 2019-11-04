@@ -1,5 +1,14 @@
+BUILD=build
+FMT=gofmt -w -l
+
+ifdef VERBOSE
+	TEST_VERBOSE=-v
+endif
+
+default: fmt
+
 fmt:
-	gofmt -w -l .
+	${FMT} .
 
 test: fmt
-	go test -v github.com/xiejw/lunar/...
+	go test ${TEST_VERBOSE} github.com/xiejw/lunar/...
