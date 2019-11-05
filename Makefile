@@ -5,7 +5,11 @@ ifdef VERBOSE
 	TEST_VERBOSE=-v
 endif
 
-default: fmt
+default: fmt compile test
+
+compile:
+	go build -o ${BUILD}/dependency_viewer cmd/dependency_viewer/main.go
+
 
 fmt:
 	${FMT} .
