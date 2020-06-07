@@ -1,6 +1,20 @@
 This is my Go repository. It contains several common modules I used in other
 projects.
 
+# Set Up
+
+```go
+import (
+  "github.com/xiejw/lunar"
+)
+
+func main() {
+  lunar.Init(true/*parseFlag*/)
+  defer lunar.FinishUp()
+
+}
+```
+
 # APIs
 
 ## Package `exec`
