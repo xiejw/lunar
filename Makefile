@@ -1,18 +1,14 @@
-BUILD=build
-FMT=gofmt -w -l
-
-ifdef VERBOSE
-	TEST_VERBOSE=-v
-endif
-
-default: fmt compile test
+PACKAGES=github.com/xiejw/lunar/...
 
 compile:
-	go build -o ${BUILD}/dependency_viewer cmd/dependency_viewer/main.go
-
+	go build ${PACKAGES}
 
 fmt:
-	${FMT} .
+	go fmt ${PACKAGES}
 
-test: fmt
-	go test ${TEST_VERBOSE} github.com/xiejw/lunar/...
+test:
+	go test ${PACKAGES}
+
+bench:
+	go test -bench=. ${PACKAGES}
+
