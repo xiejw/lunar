@@ -19,10 +19,18 @@ var filePathWalk = filepath.Walk
 // is skipped.
 //
 // The files/folders are walked in lexical order.
-func Walk(baseDir string, filters []Filter, formatter Formatter) {
+func Walk(baseDir string, filters []Filter, formatter Formatter) error {
+
+	// Use absolute path to avoid starting a baseDir == `.`, which is considered as hidden file.
+	dir, err := filepath.Abs(baseDir)
+	if err != nil {
+		return err
+	}
+
 	// Walk does not support follow link. So, we read the content of the link if possible.
-	realDirPath := mustFollowDirLink(baseDir)
+	realDirPath := mustFollowDirLink(dir)
 	walkImpl(realDirPath, filters, formatter)
+	return nil
 }
 
 func walkImpl(baseDir string, filters []Filter, formatter Formatter) {
