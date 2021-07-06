@@ -17,22 +17,23 @@ func main() {
 
 # APIs
 
-## Package `exec`
+## Package `cfmt`
+
+Usage:
+
+    cfmt.Red("Hello")
+
+## Package `base/exec`
 
 Usage:
 
     results, _ := RunCmd("whoami")
     fmt.Println(results[0])
 
-## Package `base`
+## Package `base/crypto`
 
 Usage:
 
     hash, _ := Sha256Sum("~/.profile")
     fmt.Println(hash)
 
-## Package `cfmt`
-
-Usage:
-
-    cfmt.Red("Hello")
