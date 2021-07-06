@@ -7,7 +7,7 @@ import (
 	syspath "path"
 	"path/filepath"
 
-	"github.com/xiejw/lunar/base"
+	"github.com/xiejw/lunar/base/crypto"
 )
 
 type FileMetadata struct {
@@ -47,7 +47,7 @@ func NewFormatter(option FormatterOption) Formatter {
 			return
 		}
 
-		hash, err := base.Sha256Sum(syspath.Join(metadata.BaseDir, metadata.Path))
+		hash, err := crypto.Sha256Sum(syspath.Join(metadata.BaseDir, metadata.Path))
 		if err != nil {
 			log.Fatal(err)
 		}
