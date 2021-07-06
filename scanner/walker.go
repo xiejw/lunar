@@ -2,23 +2,24 @@
 package scanner
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/golang/glog"
+	"github.com/xiejw/lunar/base/errors"
 )
 
-// Stubbed for testing.
-var filePathWalk = filepath.Walk
+// -------------------------------------------------------------------------------------------------
+// public
+// -------------------------------------------------------------------------------------------------
 
-// Walks the file tree rooted at `baseDir`. If none of the `filters` returns
-// true, the file item, including folder, will be passed to `formatter`.
+// Walk walks the file tree recursively rooted at `baseDir` in lexical order.
 //
-// If any of the `filters` returns true for the sub-folder, the entire sub-tree
-// is skipped.
-//
-// The files/folders are walked in lexical order.
+// - If none of the `filters` returns true, the file item, including folder, will be passed to
+//   `formatter`.
+// - If any of the `filters` returns true for the sub-folder, the entire sub-tree is skipped.
 func Walk(baseDir string, filters []Filter, formatter Formatter) error {
 
 	// Use absolute path to avoid starting a baseDir == `.`, which is considered as hidden file.
@@ -29,11 +30,17 @@ func Walk(baseDir string, filters []Filter, formatter Formatter) error {
 
 	// Walk does not support follow link. So, we read the content of the link if possible.
 	realDirPath := mustFollowDirLink(dir)
-	walkImpl(realDirPath, filters, formatter)
-	return nil
+	return walkImpl(realDirPath, filters, formatter)
 }
 
-func walkImpl(baseDir string, filters []Filter, formatter Formatter) {
+// -------------------------------------------------------------------------------------------------
+// impl
+// -------------------------------------------------------------------------------------------------
+
+// Stubbed for testing.
+var filePathWalk = filepath.Walk
+
+func walkImpl(baseDir string, filters []Filter, formatter Formatter) error {
 
 	// Defines a walkFn wich captured information.
 	walkFn := func(path string, info os.FileInfo, err error) error {
@@ -62,22 +69,21 @@ func walkImpl(baseDir string, filters []Filter, formatter Formatter) {
 	}
 
 	if err := filePathWalk(baseDir, walkFn); err != nil {
-		glog.Fatalf("Failed to walk: %v", err)
+		return errors.WrapNote(err, "failed to walk into dir: %s", baseDir)
 	}
+	return nil
 }
 
 func mustFollowDirLink(dir string) string {
 	stat, err := os.Lstat(dir)
 	if err != nil {
-		glog.Fatalf("failed to stat the dir (%v): %v", dir, err)
-		return dir
+		panic(fmt.Sprintf("failed to stat the dir (%v): %v", dir, err))
 	}
 
 	if stat.Mode()&os.ModeSymlink != 0 {
 		realDir, err := os.Readlink(dir)
 		if err != nil {
-			glog.Fatalf("failed to read link for dir %v: %v", dir, err)
-			return dir
+			panic(fmt.Sprintf("failed to read link for dir %v: %v", dir, err))
 		}
 		glog.Infof("read link %v => %v", dir, realDir)
 		return realDir
