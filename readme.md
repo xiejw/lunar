@@ -5,12 +5,12 @@ projects.
 
 ```go
 import (
-  "github.com/xiejw/lunar"
+  "github.com/xiejw/lunar/base"
 )
 
 func main() {
-  lunar.Init(true/*parseFlag*/)
-  defer lunar.FinishUp()
+  base.Init(true/*parseFlag*/)
+  defer base.FinishUp()
 
 }
 ```
