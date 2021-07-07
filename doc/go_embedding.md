@@ -21,7 +21,7 @@ To define and use it, see example below:
     }
 
     func (c *Car) Print() {
-      fmt.Println("I am car.")
+      fmt.Println("I am Car.")
     }
 
     type Tesla struct {
@@ -43,5 +43,5 @@ To define and use it, see example below:
       _ = a.NumOfWheels
 
       a.Print()     // Prints: I am Tesla.
-      a.Car.Print() // Prints: I am car.
+      a.Car.Print() // Prints: I am Car.
     }
