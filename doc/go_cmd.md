@@ -39,4 +39,8 @@ Then you can do this
     # But the following is not allowed, given no source file under `lib`.
     go <action> github.com/xiejw/lunar/lib
 
+## The `go clean`
 
+```
+go clean --modcache  # clean all mod downloads
+```
