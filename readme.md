@@ -21,7 +21,24 @@ func main() {
 
 Usage:
 
-    cfmt.Red("Hello")
+```
+cfmt.Red("Hello")
+```
+
+## Package `glog`
+
+Fork of [golang/glog](github.com/golang/glog). Usage
+
+```
+glog.Info("Prepare to repel boarders")
+
+glog.Fatalf("Initialization failed: %s", err)
+
+if glog.V(2) {
+	glog.Info("Starting transaction...")
+}
+glog.V(2).Infoln("Processed", nItems, "elements")
+```
 
 ## Package `base/exec`
 

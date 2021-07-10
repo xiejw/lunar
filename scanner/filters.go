@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/golang/glog"
+	"github.com/xiejw/lunar/glog"
 )
 
 // A Filter invoked for each entry during the walk. Returns true to skip the

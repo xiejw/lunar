@@ -3,7 +3,7 @@ package base
 import (
 	"flag"
 
-	"github.com/golang/glog"
+	"github.com/xiejw/lunar/glog"
 )
 
 // Initializes the lunar.

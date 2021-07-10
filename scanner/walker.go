@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/golang/glog"
 	"github.com/xiejw/lunar/base/errors"
+	"github.com/xiejw/lunar/glog"
 )
 
 // -------------------------------------------------------------------------------------------------
