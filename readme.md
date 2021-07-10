@@ -21,15 +21,15 @@ func main() {
 
 Usage:
 
-```
+```go
 cfmt.Red("Hello")
 ```
 
 ## Package `glog`
 
-Fork of [golang/glog](github.com/golang/glog). Usage
+Fork of [golang/glog](https://github.com/golang/glog). Usage
 
-```
+```go
 glog.Info("Prepare to repel boarders")
 
 glog.Fatalf("Initialization failed: %s", err)
@@ -44,13 +44,16 @@ glog.V(2).Infoln("Processed", nItems, "elements")
 
 Usage:
 
-    results, _ := RunCmd("whoami")
-    fmt.Println(results[0])
+```go
+results, _ := RunCmd("whoami")
+fmt.Println(results[0])
+```
 
 ## Package `base/crypto`
 
 Usage:
 
-    hash, _ := Sha256Sum("~/.profile")
-    fmt.Println(hash)
-
+```go
+hash, _ := Sha256Sum("~/.profile")
+fmt.Println(hash)
+```
