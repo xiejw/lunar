@@ -31,6 +31,12 @@ Cond 2. logtostderr     = False
 
 `syncBuffer.Write` rotates the log files when buffer is full.
 
+### File name and Line Number
+
+The file name and line number are obtained via getting callers' PC and
+[CallersFrames](https://golang.org/pkg/runtime/#CallersFrames). See
+[runtime.Callers](https://golang.org/pkg/runtime/#Callers)
+
 ### Go log and glog
 
 ` CopyStandardLogTo` arranges for messages written to the Go "log" package's
