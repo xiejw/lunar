@@ -1,4 +1,10 @@
-# glog
+##  Fork
+This sub-folder is a fork of [golang/glog](https://github.com/golang/glog) under
+Apache license.
+
+For reading notes, see [here](notes.md).
+
+##  Readme for glog
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/golang/glog)](https://pkg.go.dev/github.com/golang/glog)
 
