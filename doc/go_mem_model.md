@@ -8,10 +8,11 @@
 
 ### Happens-Before and Reordering
 
-Happens-Before defines the ordering relationship and thereby defines whats
+Happens-Before defines the ordering relationship and thereby defines what
 writes must be observed by the reads later as a contract.  This draws a hard
-requirement on multi-threads program, as a natual extention of the single-thread
-program.
+requirement on multi-threads program for compiler and hareware support, as a
+natual extention of the single-thread program, as well as for user's mental
+models.
 
 ### Examples of Happens-Before
 
@@ -74,3 +75,40 @@ b = 2
 ```
 due to multi-layer recording happen in the system. For multi-word size data
 types, the corruption could be unpredictable.
+
+
+A promising example could be
+```
+(x,y started with 0)
+
+Thread 1    Thread 2
+--------    --------
+x = 1
+y = 2
+S(a)     -> S(a)
+            a = x
+            b = y
+```
+where `S(a)` is a sync point, which defines Happens-Before relationship as
+
+```
+x = 1  ->
+y = 2  ->
+a = x  ->
+b = y
+```
+across the multi-threads. With this, it is clear that, `a` and `b` must see the
+expected values.
+
+A confusing example could be
+```
+(x,y started with 0)
+
+Thread 1    Thread 2    Thread 3
+--------    --------    --------
+x = 1       x =2
+S(a)                    -> S(a)
+            S(b)        -> S(b)
+                        a = x
+                        b = x
+```
